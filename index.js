@@ -67,8 +67,18 @@ Use the higher-order function getWinners to do the following:
 3. Determines the winner (home or away) of each `finals` game. 
 4. Returns the names of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
-    /* code here */
+function getWinners(array, getFinals) {
+    const winners = [];
+    getFinals(array);
+    for(let i = 0; i < getFinals(array).length; i++){
+        if((getFinals(array)[i]["Home Team Goals"]) > (getFinals(array)[i]["Away Team Goals"])){
+            winners.push((getFinals(array)[i]["Home Team Name"]));
+        }
+        else if((getFinals(array)[i]["Away Team Goals"]) > (getFinals(array)[i]["Home Team Goals"])){
+            winners.push((getFinals(array)[i]["Away Team Name"]));
+        }
+    }
+    return winners;
 }
 
 
