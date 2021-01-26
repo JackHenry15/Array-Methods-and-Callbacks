@@ -69,7 +69,6 @@ Use the higher-order function getWinners to do the following:
 
 function getWinners(array, getFinals) {
     const winners = [];
-    getFinals(array);
     for(let i = 0; i < getFinals(array).length; i++){
         if((getFinals(array)[i]["Home Team Goals"]) > (getFinals(array)[i]["Away Team Goals"])){
             winners.push((getFinals(array)[i]["Home Team Name"]));
@@ -93,8 +92,12 @@ Use the higher-order function getWinnersByYear to do the following:
 hint: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
+function getWinnersByYear(array, getYears, getWinners) {
+    const newArray = [];
+    for(let i = 0; i < getYears(array).length; i++){
+        newArray.push(`In ${getYears(array)[i]}, ${getWinners(array)[i]} won the world cup!`);
+    }
+    return newArray;
 }
 
 
@@ -109,9 +112,14 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
-   /* code here */
+function getAverageGoals(getFinals){
+   const totGoals = getFinals.reduce(function(accumulator, item){
+     return accumulator +  item["Home Team Goals"] + item["Away Team Goals"];  
+   },0);
+    
+   return (totGoals / getFinals.length).toPrecision(3);
 }
+
 
 
 
